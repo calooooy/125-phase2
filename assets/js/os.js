@@ -33,9 +33,14 @@ function radioClicked(e){
  //function to add row
 
 function addRow(){
-	let AT=document.getElementById("AT").value;
-    let BT=document.getElementById("BT").value;
-    if(AT=="" ||BT==""){
+	// let AT=document.getElementById("AT").value;
+    // let BT=document.getElementById("BT").value;
+    let AT=Math.floor(Math.random() * 51);
+    let BT=Math.floor(Math.random() * 51);
+    let memory=Math.floor(Math.random() * 1025);
+
+    // temporary rani para mo accept ug 0
+    if(AT=="52" ||BT=="52"){
     	alert("Empty field");
     }
     else{
@@ -61,6 +66,7 @@ function addRow(){
         let cell7=row.insertCell(6);
         let cell8=row.insertCell(7);
         let cell9=row.insertCell(8);
+        let cell10=row.insertCell(9);
         var inpPr=document.createElement("input");
         inpPr.style.width="50px";
         inpPr.className ="priority-input";
@@ -75,10 +81,12 @@ function addRow(){
         cell7.innerHTML="";
         cell8.innerHTML=""; 
         cell9.innerHTML=""; 
+        cell10.innerHTML=memory;
         setColor(Number(rows));
    	 	rows++;
         document.getElementById("BT").value="";
         document.getElementById("AT").value="";
+        document.getElementById("memory").value="";
     }
 }
 
