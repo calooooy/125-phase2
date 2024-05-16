@@ -86,8 +86,8 @@
 
         <!-- Buttons add and delete , Execute-->
         <div class="allbtn">
-            <button type="button" id="add" class="btn btn-primary" onclick="addRow()">Add a Row +</button>
-            <button type="button" id="delete" class="btn btn-danger" onclick="deleteRow()">Delete a Row -</button>
+            <button type="button" id="add" class="btn btn-primary" onclick="addRow()">Add Process</button>
+            <!-- <button type="button" id="delete" class="btn btn-danger" onclick="deleteRow()">Delete a Row -</button> -->
             <button type="button" class="btn btn-success" id="execute" onclick="calculate()">Execute</button>
         </div><br>
 
@@ -97,7 +97,7 @@
         <table id="table" class="tbl">
             <thead>
                 <tr>
-                    <th colspan="9" style="width: 100%; text-align: center;font-size:larger">SCHEDULING
+                    <th colspan="10" style="width: 90%; text-align: center;font-size:larger">SCHEDULING
                         TABLE
                     </th>
                 </tr>
@@ -113,6 +113,7 @@
                     <td style="width: 10%;">CT</td>
                     <td style="width: 12%;">Waiting Time</td>
                     <td id="color-code" style="width:6%;">Color</td>
+                    <td style="width: 12%;">Memory</td>
                 </tr>
             </tbody>
         </table>
