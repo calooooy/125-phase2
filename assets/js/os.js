@@ -33,10 +33,13 @@ function radioClicked(e){
  //function to add row
 
 function addRow(){
-	let AT=document.getElementById("AT").value;
-    let BT=document.getElementById("BT").value;
-    if(AT=="" ||BT==""){
+	// let AT=document.getElementById("AT").value;
+    // let BT=document.getElementById("BT").value;
+    let AT=Math.floor(Math.random() * 51);
+    let BT=Math.floor(Math.random() * 51);
+    if(AT=="11" ||BT=="11"){
     	alert("Empty field");
+        
     }
     else{
         if(Number(AT)<0 || Number (BT)<0){
@@ -175,83 +178,83 @@ function calculate(){
     document.getElementById("timer").innerHTML="";
     
     //SJF
-    // if(document.getElementById("SJF").checked){
-    //     let time=0;
-    //     let check_pro = [];
-    //     for(i=1;i<=processes;i++){
-    //         check_pro[i]=false;
-    //     }
-    //     let queue=[];
-    //     let bt=[];
-    //     let counter=0;
-    //     addProcesses(time,processes,queue,check_pro,bt);
-    //     if(queue.length==0){
-    //         let flag=0;
-    //         for(j=1;j<=processes;j++){
-    //             if(check_pro[j]==false){
-    //                 flag++;
-    //                 break;
-    //             }
-    //         }
-    //         let at=Number(table.rows[1+j].cells[1].innerHTML);
-    //         let b=Number(table.rows[1+j].cells[2].innerHTML);
-    //         var pr=document.getElementById("processr");
-    //         var tr=document.getElementById("timer");
-    //         animator(pr,tr,0,at);
-    //         time=at;
-    //         addProcesses(time,processes,queue,check_pro,bt); 
-    //     }
-    //     while(!(queue.length==0)){
-    //         let r=0;
-    //         let min=Math.min(...bt);
-    //         let index=bt.indexOf(min);
-    //         if(index==-1){
-    //             break;
-    //         }
-    //         else{
-    //             bt.splice(index,1);
-    //             r=queue[index];
-    //             let myt=document.getElementById("mytb");
-    //             var pr=document.getElementById("processr");
-    //             var tr=document.getElementById("timer");
-    //             animator(pr,tr,r,min);
-    //             queue.splice(index,1);
-    //             table.rows[1+r].cells[4].innerHTML=Number(time)-Number(table.rows[1+r].cells[1].innerHTML);
-    //             time=Number(time)+Number(min);
-    //             let at=Number(table.rows[1+r].cells[1].innerHTML);
-    //             table.rows[1+r].cells[6].innerHTML=time;
-    //             table.rows[1+r].cells[5].innerHTML=time-at;
-    //             table.rows[1+r].cells[7].innerHTML=(time-at)-min;
-    //             addProcesses(time,processes,queue,check_pro,bt);
-    //             if(queue.length==0){
-    //                 let flag=0;
-    //                 for(i=1;i<=processes;i++){
-    //                     if(check_pro[i]==false){
-    //                         flag++;
-    //                         break;
-    //                     }
-    //                 }
-    //                 if(flag==0){
-    //                     break;
-    //                 }
-    //                 else{
-    //                     let at=Number(table.rows[1+i].cells[1].innerHTML);
-    //                     let b=Number(table.rows[1+i].cells[2].innerHTML);
-    //                     var pr=document.getElementById("processr");
-    //                     var tr=document.getElementById("timer");
-    //                     animator(pr,tr,0,at-time);
-    //                     time=at;
-    //                     addProcesses(time,processes,queue,check_pro,bt);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     calAverage(processes);
-    //     create_Graph();
-    // }
+    if(document.getElementById("SJF").checked){
+        let time=0;
+        let check_pro = [];
+        for(i=1;i<=processes;i++){
+            check_pro[i]=false;
+        }
+        let queue=[];
+        let bt=[];
+        let counter=0;
+        addProcesses(time,processes,queue,check_pro,bt);
+        if(queue.length==0){
+            let flag=0;
+            for(j=1;j<=processes;j++){
+                if(check_pro[j]==false){
+                    flag++;
+                    break;
+                }
+            }
+            let at=Number(table.rows[1+j].cells[1].innerHTML);
+            let b=Number(table.rows[1+j].cells[2].innerHTML);
+            var pr=document.getElementById("processr");
+            var tr=document.getElementById("timer");
+            animator(pr,tr,0,at);
+            time=at;
+            addProcesses(time,processes,queue,check_pro,bt); 
+        }
+        while(!(queue.length==0)){
+            let r=0;
+            let min=Math.min(...bt);
+            let index=bt.indexOf(min);
+            if(index==-1){
+                break;
+            }
+            else{
+                bt.splice(index,1);
+                r=queue[index];
+                let myt=document.getElementById("mytb");
+                var pr=document.getElementById("processr");
+                var tr=document.getElementById("timer");
+                animator(pr,tr,r,min);
+                queue.splice(index,1);
+                table.rows[1+r].cells[4].innerHTML=Number(time)-Number(table.rows[1+r].cells[1].innerHTML);
+                time=Number(time)+Number(min);
+                let at=Number(table.rows[1+r].cells[1].innerHTML);
+                table.rows[1+r].cells[6].innerHTML=time;
+                table.rows[1+r].cells[5].innerHTML=time-at;
+                table.rows[1+r].cells[7].innerHTML=(time-at)-min;
+                addProcesses(time,processes,queue,check_pro,bt);
+                if(queue.length==0){
+                    let flag=0;
+                    for(i=1;i<=processes;i++){
+                        if(check_pro[i]==false){
+                            flag++;
+                            break;
+                        }
+                    }
+                    if(flag==0){
+                        break;
+                    }
+                    else{
+                        let at=Number(table.rows[1+i].cells[1].innerHTML);
+                        let b=Number(table.rows[1+i].cells[2].innerHTML);
+                        var pr=document.getElementById("processr");
+                        var tr=document.getElementById("timer");
+                        animator(pr,tr,0,at-time);
+                        time=at;
+                        addProcesses(time,processes,queue,check_pro,bt);
+                    }
+                }
+            }
+        }
+        calAverage(processes);
+        create_Graph();
+    }
     
     //FCFS
-    if(document.getElementById("FCFS").checked){
+    else if(document.getElementById("FCFS").checked){
         let time=0;
         if(table.rows[2].cells[1].innerHTML=="0"){
         	table.rows[2].cells[4].innerHTML="0";
@@ -422,157 +425,157 @@ function calculate(){
     }
 
     //LJF
-    // else if(document.getElementById("LJF").checked){
-    //     let time=0;
-    //     let check_pro = [];
-    //     for(i=1;i<=processes;i++){
-    //         check_pro[i]=false;
-    //     }
-    //     let queue=[];
-    //     let bt=[];
-    //     let counter=0;
-    //     addProcesses(time,processes,queue,check_pro,bt);
-    //     if(queue.length==0){
-    //         let flag=0;
-    //         for(j=1;j<=processes;j++){
-    //             if(check_pro[j]==false){
-    //                 flag++;
-    //                 break;
-    //             }
-    //         }
-    //         let at=Number(table.rows[1+j].cells[1].innerHTML);
-    //         let b=Number(table.rows[1+j].cells[2].innerHTML);
-    //         var pr=document.getElementById("processr");
-    //         var tr=document.getElementById("timer");
-    //         animator(pr,tr,0,at);
-    //         time=at;
-    //         addProcesses(time,processes,queue,check_pro,bt); 
-    //     }
-    //     while(!(queue.length==0)){
-    //         let r=0;
-    //         let max=Math.max(...bt);
-    //         let index=bt.indexOf(max);
-    //         if(index==-1){
-    //             break;
-    //         }
-    //         else{
-    //             bt.splice(index,1);
-    //             r=queue[index];
-    //             let myt=document.getElementById("mytb");
-    //             var pr=document.getElementById("processr");
-    //             var tr=document.getElementById("timer");
-    //             animator(pr,tr,r,max);
-    //             queue.splice(index,1);
-    //             let at=Number(table.rows[1+r].cells[1].innerHTML);
-    //             table.rows[1+r].cells[4].innerHTML=(time-at);
-    //             time=time+max;
-    //             table.rows[1+r].cells[6].innerHTML=time;
-    //             table.rows[1+r].cells[5].innerHTML=time-at;
-    //             table.rows[1+r].cells[7].innerHTML=(time-at)-max;
-    //             addProcesses(time,processes,queue,check_pro,bt);
-    //             if(queue.length==0){
-    //                 let flag=0;
-    //                 for(i=1;i<=processes;i++){
-    //                     if(check_pro[i]==false){
-    //                         flag++;
-    //                         break;
-    //                     }
-    //                 }
-    //                 if(flag==0){
-    //                     break;
-    //                 }
-    //                 else{
-    //                     let at=Number(table.rows[1+i].cells[1].innerHTML);
-    //                     let b=Number(table.rows[1+i].cells[2].innerHTML);
-    //                     var pr=document.getElementById("processr");
-    //                     var tr=document.getElementById("timer");
-    //                     animator(pr,tr,0,at-time);
-    //                     time=at;
-    //                     addProcesses(time,processes,queue,check_pro,bt);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     calAverage(processes);
-    //     create_Graph();
-    // }
+    else if(document.getElementById("LJF").checked){
+        let time=0;
+        let check_pro = [];
+        for(i=1;i<=processes;i++){
+            check_pro[i]=false;
+        }
+        let queue=[];
+        let bt=[];
+        let counter=0;
+        addProcesses(time,processes,queue,check_pro,bt);
+        if(queue.length==0){
+            let flag=0;
+            for(j=1;j<=processes;j++){
+                if(check_pro[j]==false){
+                    flag++;
+                    break;
+                }
+            }
+            let at=Number(table.rows[1+j].cells[1].innerHTML);
+            let b=Number(table.rows[1+j].cells[2].innerHTML);
+            var pr=document.getElementById("processr");
+            var tr=document.getElementById("timer");
+            animator(pr,tr,0,at);
+            time=at;
+            addProcesses(time,processes,queue,check_pro,bt); 
+        }
+        while(!(queue.length==0)){
+            let r=0;
+            let max=Math.max(...bt);
+            let index=bt.indexOf(max);
+            if(index==-1){
+                break;
+            }
+            else{
+                bt.splice(index,1);
+                r=queue[index];
+                let myt=document.getElementById("mytb");
+                var pr=document.getElementById("processr");
+                var tr=document.getElementById("timer");
+                animator(pr,tr,r,max);
+                queue.splice(index,1);
+                let at=Number(table.rows[1+r].cells[1].innerHTML);
+                table.rows[1+r].cells[4].innerHTML=(time-at);
+                time=time+max;
+                table.rows[1+r].cells[6].innerHTML=time;
+                table.rows[1+r].cells[5].innerHTML=time-at;
+                table.rows[1+r].cells[7].innerHTML=(time-at)-max;
+                addProcesses(time,processes,queue,check_pro,bt);
+                if(queue.length==0){
+                    let flag=0;
+                    for(i=1;i<=processes;i++){
+                        if(check_pro[i]==false){
+                            flag++;
+                            break;
+                        }
+                    }
+                    if(flag==0){
+                        break;
+                    }
+                    else{
+                        let at=Number(table.rows[1+i].cells[1].innerHTML);
+                        let b=Number(table.rows[1+i].cells[2].innerHTML);
+                        var pr=document.getElementById("processr");
+                        var tr=document.getElementById("timer");
+                        animator(pr,tr,0,at-time);
+                        time=at;
+                        addProcesses(time,processes,queue,check_pro,bt);
+                    }
+                }
+            }
+        }
+        calAverage(processes);
+        create_Graph();
+    }
 
     //LRTF
-    // else if (document.getElementById("LRTF").checked) {
-    //     let time=0;
-    //     let check_pro = [];
-    //     let pr=document.getElementById("processr");
-    //     let tr=document.getElementById("timer");
-    //     for(i=1;i<=processes;i++){
-    //         check_pro[i]=false;
-    //     }
-    //     let queue=[];
-    //     let bt=[];
-    //     addProcesses(time,processes,queue,check_pro,bt);
-    //     if(queue.length==0){
-    //         let flag=0;
-    //         for(j=1;j<=processes;j++){
-    //             if(check_pro[j]==false){
-    //                 flag++;
-    //                 break;
-    //             }
-    //         }
-    //         let at=Number(table.rows[1+j].cells[1].innerHTML);
-    //         let b=Number(table.rows[1+j].cells[2].innerHTML);
-    //         animator(pr,tr,0,at);
-    //         time=at;
-    //         addProcesses(time,processes,queue,check_pro,bt); 
-    //     }
-    //     while(!(queue.length==0)){
-    //         let tq=1;
-    //         let max=Math.max(...bt);
-    //         let i=bt.indexOf(max);
-    //         while(bt[i]<=0){
-    //             bt.splice(i,1);
-    //             queue.splice(i,1);
-    //             max=Math.max(...bt);
-    //             i=bt.indexOf(max);
-    //         }
-    //         if(bt[i]>0){
-    //             if(bt[i]==Number(table.rows[2+i].cells[2].innerHTML)){
-    //                 table.rows[2+i].cells[4].innerHTML=""+(time-Number(table.rows[2+i].cells[1].innerHTML));
-    //             }
-    //             ++time;
-    //             animator(pr,tr,i+1,tq);
-    //             bt[i]=bt[i]-1;
-    //             if(bt[i]==0){
-    //                 table.rows[2+i].cells[6].innerHTML=""+time;
-    //             }
-    //             addProcesses(time,processes,queue,check_pro,bt);
-    //         }
+    else if (document.getElementById("LRTF").checked) {
+        let time=0;
+        let check_pro = [];
+        let pr=document.getElementById("processr");
+        let tr=document.getElementById("timer");
+        for(i=1;i<=processes;i++){
+            check_pro[i]=false;
+        }
+        let queue=[];
+        let bt=[];
+        addProcesses(time,processes,queue,check_pro,bt);
+        if(queue.length==0){
+            let flag=0;
+            for(j=1;j<=processes;j++){
+                if(check_pro[j]==false){
+                    flag++;
+                    break;
+                }
+            }
+            let at=Number(table.rows[1+j].cells[1].innerHTML);
+            let b=Number(table.rows[1+j].cells[2].innerHTML);
+            animator(pr,tr,0,at);
+            time=at;
+            addProcesses(time,processes,queue,check_pro,bt); 
+        }
+        while(!(queue.length==0)){
+            let tq=1;
+            let max=Math.max(...bt);
+            let i=bt.indexOf(max);
+            while(bt[i]<=0){
+                bt.splice(i,1);
+                queue.splice(i,1);
+                max=Math.max(...bt);
+                i=bt.indexOf(max);
+            }
+            if(bt[i]>0){
+                if(bt[i]==Number(table.rows[2+i].cells[2].innerHTML)){
+                    table.rows[2+i].cells[4].innerHTML=""+(time-Number(table.rows[2+i].cells[1].innerHTML));
+                }
+                ++time;
+                animator(pr,tr,i+1,tq);
+                bt[i]=bt[i]-1;
+                if(bt[i]==0){
+                    table.rows[2+i].cells[6].innerHTML=""+time;
+                }
+                addProcesses(time,processes,queue,check_pro,bt);
+            }
 
-    //         if(queue.length==0){
-    //             let flag=0;
-    //             for(j=1;j<=processes;j++){
-    //                 if(check_pro[j]==false){
-    //                     flag++;
-    //                     break;
-    //                 }
-    //             }
-    //             if(flag==0){
-    //                 break;
-    //             }
-    //             else{
-    //                 let at=Number(table.rows[1+j].cells[1].innerHTML);
-    //                 let b=Number(table.rows[1+j].cells[2].innerHTML);
-    //                 animator(pr,tr,0,at-time);
-    //                 time=at;
-    //                 addProcesses(time,processes,queue,check_pro,bt);
-    //             }    
-    //         }
-    //         for(i=0;i<processes;++i){
-    //             table.rows[2+i].cells[5].innerHTML=Number(table.rows[2+i].cells[6].innerHTML)-Number(table.rows[2+i].cells[1].innerHTML);
-    //             table.rows[2+i].cells[7].innerHTML=Number(table.rows[2+i].cells[5].innerHTML)-Number(table.rows[2+i].cells[2].innerHTML);
-    //         }
-    //     }
-    //     calAverage(processes);
-    //     create_Graph();
-    // }
+            if(queue.length==0){
+                let flag=0;
+                for(j=1;j<=processes;j++){
+                    if(check_pro[j]==false){
+                        flag++;
+                        break;
+                    }
+                }
+                if(flag==0){
+                    break;
+                }
+                else{
+                    let at=Number(table.rows[1+j].cells[1].innerHTML);
+                    let b=Number(table.rows[1+j].cells[2].innerHTML);
+                    animator(pr,tr,0,at-time);
+                    time=at;
+                    addProcesses(time,processes,queue,check_pro,bt);
+                }    
+            }
+            for(i=0;i<processes;++i){
+                table.rows[2+i].cells[5].innerHTML=Number(table.rows[2+i].cells[6].innerHTML)-Number(table.rows[2+i].cells[1].innerHTML);
+                table.rows[2+i].cells[7].innerHTML=Number(table.rows[2+i].cells[5].innerHTML)-Number(table.rows[2+i].cells[2].innerHTML);
+            }
+        }
+        calAverage(processes);
+        create_Graph();
+    }
     
     //SRTF
     else if (document.getElementById("SRTF").checked) {
